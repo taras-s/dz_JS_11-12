@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JS 11-12 jQuery Carousel. by Taras Semeniuk</title>
+
+	<link rel="stylesheet" href="css/styles.css">
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/jquery.carousel.js"></script>
+	<script src="js/jquery.tmpl.js"></script>
+	<script src="js/script.js"></script>
+
+	<script>document.write('<script src="http://' + (location.host || 'localhost')
+	.split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+
+</head>
+<body>
+
+<!-- ============================================================ Carousel -->
+
+<div class="clearfix" id="carousel1">
+
+	<div class="carousel-arrow-left"><span>Влево</span></div>
+
+	<div class="carousel-hider">
+		<ul class="carousel-list">
+			<li class="carousel-element"><img src="img/img1.jpg"><p>Описание 1</p></li>
+			<li class="carousel-element"><img src="img/img2.jpg"><p>Описание 2</p></li>
+			<li class="carousel-element"><img src="img/img3.jpg"><p>Описание 3</p></li>
+			<li class="carousel-element"><img src="img/img4.jpg"><p>Описание 4</p></li>
+			<li class="carousel-element"><img src="img/img1.jpg"><p>Описание 5</p></li>
+			<li class="carousel-element"><img src="img/img2.jpg"><p>Описание 6</p></li>
+			<li class="carousel-element"><img src="img/img3.jpg"><p>Описание 7</p></li>
+			<li class="carousel-element"><img src="img/img4.jpg"><p>Описание 8</p></li>
+			<li class="carousel-element"><img src="img/img1.jpg"><p>Описание 9</p></li>
+			<li class="carousel-element"><img src="img/img2.jpg"><p>Описание 10</p></li>
+			<li class="carousel-element"><img src="img/img3.jpg"><p>Описание 11</p></li>
+			<li class="carousel-element"><img src="img/img4.jpg"><p>Описание 12</p></li>
+		</ul>
+	</div>
+
+	<div class="carousel-arrow-right"><span>Вправо</span></div>
+
+</div>
+
+
+
+<div class="clearfix" id="carousel2">
+
+	<div class="carousel-arrow-left"><span>Влево</span></div>
+
+	<div class="carousel-hider">
+		<ul class="carousel-list">
+			<li class="carousel-element"><img src="img/img1.jpg"><p>Описание 1</p></li>
+			<li class="carousel-element"><img src="img/img2.jpg"><p>Описание 2</p></li>
+			<li class="carousel-element"><img src="img/img3.jpg"><p>Описание 3</p></li>
+			<li class="carousel-element"><img src="img/img4.jpg"><p>Описание 4</p></li>
+			<li class="carousel-element"><img src="img/img1.jpg"><p>Описание 5</p></li>
+			<li class="carousel-element"><img src="img/img2.jpg"><p>Описание 6</p></li>
+			<li class="carousel-element"><img src="img/img3.jpg"><p>Описание 7</p></li>
+			<li class="carousel-element"><img src="img/img4.jpg"><p>Описание 8</p></li>
+			<li class="carousel-element"><img src="img/img1.jpg"><p>Описание 9</p></li>
+			<li class="carousel-element"><img src="img/img2.jpg"><p>Описание 10</p></li>
+			<li class="carousel-element"><img src="img/img3.jpg"><p>Описание 11</p></li>
+			<li class="carousel-element"><img src="img/img4.jpg"><p>Описание 12</p></li>
+		</ul>
+	</div>
+
+	<div class="carousel-arrow-right"><span>Вправо</span></div>
+
+</div>
+
+<div id="list"><h1>Рекомендуем торты</h1>
+	<div id="results">output results here</div>
+</div>
+
+
+<script>
+
+	$(function(){
+
+	var dataObject = {items:[
+	{ img:"tr01.jpg", 
+		chapter:"ВЫПЕЧКА И ДЕСЕРТЫ", 
+		title:"Традиционный торт «Наполеон»", 
+		resrs:"4 ЧАСА • 8 ИНГРЕДИЕНТОВ", 
+		author:"JULIA CHILIKINA" },
+	{ img:"tr02.jpg", 
+		chapter:"ПОШАГОВЫЕ РЕЦЕПТЫ ВЫПЕЧКА И ДЕСЕРТЫ", 
+		title:"Торт «Наполеон» с апельсиновым кремом", 
+		resrs:"2 ЧАСА • 10 ИНГРЕДИЕНТОВ", 
+		author:"MASHA DENISOVA" },
+	{ img:"tr03.jpg", 
+		chapter:"ВЫПЕЧКА И ДЕСЕРТЫ", 
+		title:"Торт «Сметанник»", 
+		resrs:"1 ЧАС 5 МИНУТ • 8 ИНГРЕДИЕНТОВ", 
+		author:"АЛЁНОЧКА ЦЮРЕНКО" },
+	{ img:"tr04.jpg", 
+		chapter:"ВЫПЕЧКА И ДЕСЕРТЫ ФРАНЦУЗСКАЯ КУХНЯ", 
+		title:"Торт «Зебра»", 
+		resrs:"1 ЧАС 25 МИНУТ • 9 ИНГРЕДИЕНТОВ", 
+		author:"SVETA LIPATSKOVA" },
+	{ img:"tr05.jpg", 
+		chapter:"ВЫПЕЧКА И ДЕСЕРТЫ", 
+		title:"Торт «Прага» по старинному рецепту", 
+		resrs:"1 ЧАС 10 МИНУТ • 13 ИНГРЕДИЕНТОВ", 
+		author:"ЯНА ГАЛИЦКАЯ" },
+	{ img:"tr06.jpg", 
+		chapter:"ВЫПЕЧКА И ДЕСЕРТЫ", 
+		title:"Торт «Панчо» с ананасами и грецкими орехами", 
+		resrs:"1 ЧАС 30 МИНУТ + 6 ЧАСОВ • 9 ИНГРЕДИЕНТОВ", 
+		author:"ЕЛЕНА ТИТАРЕНКО" },
+	{ img:"tr07.jpg", 
+		chapter:"ВЫПЕЧКА И ДЕСЕРТЫ", 
+		title:"Морковный торт с грецкими орехами и корицей", 
+		resrs:"1 ЧАС 30 МИНУТ • 14 ИНГРЕДИЕНТОВ", 
+		author:"ЮЛИЯ ЖИГАЛЁВА" },
+	{ img:"tr08.jpg", 
+		chapter:"ВЫПЕЧКА И ДЕСЕРТЫ", 
+		title:"Торт с вишней и кремом из сыра маскарпоне", 
+		resrs:"1 ЧАС • 7 ИНГРЕДИЕНТОВ", 
+		author:"ВИОЛЕТТА Т" }
+	]};
+
+// ============================================= End of dataObject
+
+	var results = document.getElementById("results");
+	results.innerHTML = tmpl("item_tmpl", dataObject);
+
+});
+</script>
+
+
+
+<script type="text/html" id="item_tmpl">
+
+<% for ( var i = 0; i < items.length; i++ ) { %>
+
+<div>
+	<img src="img/<%=items[i].img%>">
+	<p class="chapter"><%=items[i].chapter%></p>
+	<h3 class="title"><%=items[i].title%></h3>
+	<p class="resrs"><%=items[i].resrs%></p>
+	<p class="author"><%=items[i].author%></p>
+</div>
+
+<% } %>
+
+</script>
+
+<!-- 
+<%=items[i].id%>
+<%=(i % 2 == 1 ? " even" : " odd")%>
+ -->
+
+ </body></html>
